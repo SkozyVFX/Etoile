@@ -5,7 +5,8 @@ const timestampToDate = require('timestamp-to-date');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('userinfo')
-		.setDescription('Display info about yourself.'),
+		.setDescription('Display info about yourself.')
+		.addUserOption(option => option.setName('gebruiker').setDescription('The user\'s avatar to show')),
 	async execute(interaction, client) {
 		let user;
 		user = interaction.options.getMember('gebruiker') || interaction.member;
