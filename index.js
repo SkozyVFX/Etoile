@@ -1,3 +1,4 @@
+require('dotenv').config()
 const fs = require('node:fs');
 const { Client, Collection, Intents } = require('discord.js');
 const { loadSlash } = require('./loadSlash');
