@@ -1,35 +1,27 @@
-require('dotenv').config()
-const fs = require('node:fs');
-const { Client, Collection, Intents } = require('discord.js');
-const { loadSlash } = require('./loadSlash');
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
-s
+const fs = require("fs");
+const { token } = require('./config.json');
+const { laadMuziek } = require('./modules/muziek')
+
+const { Client, Intents, Collection } = require("discord.js");
+
+const allIntents = new Intents(32767);
+const client = new Client({ intents: allIntents });
+
 client.commands = new Collection();
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+client.aliases = new Collection();
+client.interactions = new Collection();
 
-for (const file of commandFiles) {
-    const command = require(`./commands/${file}`);
-    client.commands.set(command.data.name, command);
-}
+laadMuziek(client);
 
-client.once('ready', () => {
-    console.log('Ready!');
-    loadSlash();
+
+fs.readdir("./commands/", async (err, files) => {
+  const commandHandler = require("./handler/commandHandler");
+  await commandHandler(err, files, client);
 });
 
-client.on('interactionCreate', async interaction => {
-    if (!interaction.isCommand()) return;
-
-    const command = client.commands.get(interaction.commandName);
-
-    if (!command) return;
-
-    try {
-        await command.execute(interaction);
-    } catch (error) {
-        console.error(error);
-        await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
-    }
+fs.readdir("./events/", (err, files) => {
+  const eventHandler = require("./handler/eventHandler");
+  eventHandler(err, files, client);
 });
 
-client.login(process.env.TOKEN);
+client.login(token);
