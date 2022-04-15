@@ -13,7 +13,10 @@ module.exports = {
             return interaction.reply({ content: 'Er word momenteel niks afgespeeld.', ephemeral: true });
         } else {
             queue.setVolume(volume)
-            const embed = new MessageEmbed().setDescription(`Volume succesvol aangepast naar **${volume}**.`)
+            const embed = new MessageEmbed()
+            .setDescription(`Volume succesvol aangepast naar **${volume}**.`)
+            .setColor("#ff0000")
+
             return interaction.reply({ embeds: [embed] });
         }
     }
