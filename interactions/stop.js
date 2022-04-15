@@ -11,7 +11,10 @@ module.exports = {
             return interaction.reply({ content: 'Er zit momenteel niks in de wachtrij.', ephemeral: true });
         } else {
             queue.stop()
-            const embed = new MessageEmbed().setDescription(`Wachtrij succesvol gestopt.`)
+            const embed = new MessageEmbed()
+            .setDescription(`Wachtrij succesvol gestopt.`)
+            .setColor("#ff0000")
+
             return interaction.reply({ embeds: [embed] });
         }
     }

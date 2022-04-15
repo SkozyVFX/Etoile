@@ -17,6 +17,8 @@ module.exports = {
 
       const embed = new MessageEmbed()
         .setDescription(`🔍 | **Aan het zoeken...**`)
+        .setColor("#ff0000")
+
       interaction.reply({ embeds: [embed] });
 
       client.distube.play(gebruiker.voice.channel, nummer, {

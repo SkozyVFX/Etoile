@@ -15,11 +15,16 @@ module.exports = {
         } else {
             try {
                 await queue.skip()
-                const embed = new MessageEmbed().setDescription('Huidige nummer succesvol geskipt.')
+                const embed = new MessageEmbed()
+                .setDescription('Huidige nummer succesvol geskipt.')
                 .setColor("#ff0000")
+
                 return interaction.reply({ embeds: [embed]});
             } catch (e) {
-                const errorEmbed = new MessageEmbed().setDescription('Er is een fout opgetreden!').setColor('#ff0000')
+                const errorEmbed = new MessageEmbed()
+                .setDescription('Er is een fout opgetreden!')
+                .setColor('#ff0000')
+                
                 console.error(e);
                 return interaction.reply({ embeds: [errorEmbed] });
             }

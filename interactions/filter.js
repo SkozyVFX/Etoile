@@ -32,15 +32,24 @@ module.exports = {
         if (!queue) return interaction.reply({ content: 'Er word momenteel niks afgespeeld.', ephemeral: true });
         if (filter === 'off' && queue.filters?.length) {
             queue.setFilter(false);
-            const embed = new MessageEmbed().setDescription('Filter(s) succesvol uitgeschakeld.');
+            const embed = new MessageEmbed()
+            .setDescription('Filter(s) succesvol uitgeschakeld.')
+            .setColor("#ff0000");
+
             return interaction.reply({ embeds: [embed] });
         }
         else if (Object.keys(client.distube.filters).includes(filter)) {
             queue.setFilter(filter);
-            const embed = new MessageEmbed().setDescription(`Huidige wachtrij filter(s): \`${queue.filters.join(', ')}\``)
+            const embed = new MessageEmbed()
+            .setDescription(`Huidige wachtrij filter(s): \`${queue.filters.join(', ')}\``)
+            .setColor("#ff0000");
+
             return interaction.reply({ embeds: [embed] });
         } else {
-            const embed = new MessageEmbed().setDescription(`Er is een fout opgetreden!`).setColor('red')
+            const embed = new MessageEmbed()
+            .setDescription(`Er is een fout opgetreden!`)
+            .setColor("#ff0000");
+
             return interaction.reply({ embeds: [embed] }); 
         } 
     }
