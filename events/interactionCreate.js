@@ -10,6 +10,8 @@ module.exports = {
 
     if (!command) return;
 
+    console.log(interaction);
+
     try {
       await command.execute(interaction, client);
     } catch (error) {

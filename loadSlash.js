@@ -18,6 +18,7 @@ rest.put(Routes.applicationGuildCommands(process.env.CLIENTID, process.env.GUILD
 	.catch(console.error);
 }
 
+
 module.exports = {
     loadSlash
 }

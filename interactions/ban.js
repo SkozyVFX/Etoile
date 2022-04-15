@@ -11,7 +11,10 @@ module.exports = {
 
         const user = interaction.options.getMember('gebruiker');
 		const reden = interaction.options.getString('reden');
-    user.ban({ reason: reden })
+    // user.ban({ reason: reden })
+
+		console.log(client.guilds.cache.get(interaction.guild.id)?.commands)
+
 
 		const embed = new MessageEmbed()
         .setAuthor({ name: `${user.user.tag} is gebanned!`, iconURL: user.displayAvatarURL()})
