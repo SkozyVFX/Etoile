@@ -25,6 +25,7 @@ module.exports = {
 		const embed = new MessageEmbed()
 		.setAuthor({ name: user.user.tag, iconURL: user.user.displayAvatarURL()})
 		.setThumbnail(user.user.displayAvatarURL())
+		.setColor("#ff0000")
 		.addFields(
 			{ name: 'Naam', value: user.user.username, inline: true},
 			{ name: 'Tag', value: user.user.tag, inline: true},
